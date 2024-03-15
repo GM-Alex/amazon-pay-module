@@ -18,13 +18,13 @@ use OxidEsales\Eshop\Application\Model\Order;
 
 class OrderArticle extends OrderArticle_parent
 {
-    public function deleteThisArticle()
+    public function deleteThisArticle(): void
     {
         $this->refundAmazon();
         parent::deleteThisArticle();
     }
 
-    public function storno()
+    public function storno(): void
     {
         $this->refundAmazon();
         parent::storno();
@@ -33,6 +33,8 @@ class OrderArticle extends OrderArticle_parent
     /**
      * @throws DatabaseErrorException
      * @throws DatabaseConnectionException
+     *
+     * @return void
      */
     private function refundAmazon()
     {
@@ -58,7 +60,7 @@ class OrderArticle extends OrderArticle_parent
                 $logger = new Logger();
                 OxidServiceProvider::getAmazonService()->createRefund(
                     $oOrder->getId(),
-                    (float)$oOrderArticle->getFieldData('oxbrutprice'),
+                    floatval($oOrderArticle->getFieldData('oxbrutprice')),
                     $logger
                 );
             }
