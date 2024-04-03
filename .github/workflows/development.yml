@@ -171,6 +171,15 @@ jobs:
           make up
           sleep 2
 
+      - name: Install additional modules
+        run: |
+          docker-compose exec php composer require symfony/dotenv:3.4.47 --no-update
+          docker-compose exec php composer require mockery/mockery:1.3.6 --no-update
+
+      - name: Install dependencies
+        run: |
+          docker-compose exec -T php composer1 update --no-interaction
+
       - name: Run tests
         run: |
           docker-compose exec -T \
