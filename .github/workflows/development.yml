@@ -173,8 +173,8 @@ jobs:
 
       - name: Install additional modules
         run: |
-          docker-compose exec php composer1 require symfony/dotenv:3.4.47 --no-update
-          docker-compose exec php composer1 require mockery/mockery:1.3.6 --no-update
+          docker-compose exec -T php composer1 require symfony/dotenv:3.4.47 --no-update
+          docker-compose exec -T php composer1 require mockery/mockery:1.3.6 --no-update
 
       - name: Install dependencies
         run: |
