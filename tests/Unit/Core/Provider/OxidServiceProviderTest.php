@@ -33,10 +33,6 @@ use OxidEsales\TestingLibrary\UnitTestCase;
 
 class OxidServiceProviderTest extends UnitTestCase
 {
-    protected function setUp()
-    {
-    }
-
     public function testGetInstance()
     {
         $this->assertInstanceOf(OxidServiceProvider::class, OxidServiceProvider::getInstance());

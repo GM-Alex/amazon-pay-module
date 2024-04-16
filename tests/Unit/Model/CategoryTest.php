@@ -33,7 +33,7 @@ class CategoryTest extends UnitTestCase
     /** @var EshopCategoryModel */
     private $category;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->category = oxNew(EshopCategoryModel::class);
@@ -57,6 +57,6 @@ class CategoryTest extends UnitTestCase
         $this->category->save();
         $this->assertTrue($this->category->load('testSaveId'));
 
-        $this->assertSame('1', $this->category->oxcategories__osc_amazon_exclude->rawValue);
+        $this->assertSame(1, $this->category->oxcategories__osc_amazon_exclude->rawValue);
     }
 }
