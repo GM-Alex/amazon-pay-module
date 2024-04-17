@@ -928,7 +928,7 @@ class AmazonService
 
         if ($delivery->load($deliveryType)) {
             /** @var string $osc_amazon_carrier */
-            $osc_amazon_carrier = $delivery->getRawFieldData('osc_amazon_carrier');
+            $osc_amazon_carrier = $delivery->getFieldData('osc_amazon_carrier');
             $deliveryDetails[0]['carrierCode'] = $osc_amazon_carrier;
         }
 
