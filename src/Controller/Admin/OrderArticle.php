@@ -14,7 +14,7 @@ use OxidSolutionCatalysts\AmazonPay\Core\Config;
 use OxidSolutionCatalysts\AmazonPay\Core\Constants;
 use OxidSolutionCatalysts\AmazonPay\Core\Logger;
 use OxidSolutionCatalysts\AmazonPay\Core\Provider\OxidServiceProvider;
-use OxidSolutionCatalysts\AmazonPay\Model\Order;
+use OxidEsales\Eshop\Application\Model\Order;
 
 class OrderArticle extends OrderArticle_parent
 {
@@ -52,7 +52,6 @@ class OrderArticle extends OrderArticle_parent
         // order and order article exits?
         if ($oOrderArticle->load($sOrderArtId) && $oOrder->load($sOrderId)) {
             // deleting record
-            //if (Constants::isAmazonPayment($oOrderArticle->getOrder()->oxorder__oxpaymenttype->value)) {
             /** @var  string $paymentType */
             $paymentType = $oOrder->getFieldData('oxpaymenttype');
             if (Constants::isAmazonPayment($paymentType)) {

@@ -12,7 +12,7 @@ use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidSolutionCatalysts\AmazonPay\Core\Constants;
 use OxidSolutionCatalysts\AmazonPay\Core\Logger;
 use OxidSolutionCatalysts\AmazonPay\Core\Provider\OxidServiceProvider;
-use OxidSolutionCatalysts\AmazonPay\Model\Order;
+use OxidEsales\Eshop\Application\Model\Order;
 
 /**
  * Class OrderListController
