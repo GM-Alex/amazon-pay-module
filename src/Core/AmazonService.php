@@ -163,7 +163,7 @@ class AmazonService
      */
     public function getCheckoutSession(): array
     {
-        if ($this->checkoutSession !== null) {
+        if (count($this->checkoutSession)) {
             return $this->checkoutSession;
         }
 
