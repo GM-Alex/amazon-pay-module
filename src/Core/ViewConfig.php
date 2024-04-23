@@ -15,8 +15,7 @@ use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Theme;
 use OxidSolutionCatalysts\AmazonPay\Core\Helper\PhpHelper;
 use OxidSolutionCatalysts\AmazonPay\Core\Provider\OxidServiceProvider;
-use OxidSolutionCatalysts\AmazonPay\Model\Order;
-use OxidSolutionCatalysts\AmazonPay\Model\User;
+use OxidEsales\Eshop\Application\Model\User;
 
 /**
  * Amazon Pay getters for templates

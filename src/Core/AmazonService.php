@@ -21,7 +21,8 @@ use OxidSolutionCatalysts\AmazonPay\Core\Helper\Address;
 use OxidSolutionCatalysts\AmazonPay\Core\Helper\PhpHelper;
 use OxidSolutionCatalysts\AmazonPay\Core\Provider\OxidServiceProvider;
 use OxidSolutionCatalysts\AmazonPay\Core\Repository\LogRepository;
-use OxidSolutionCatalysts\AmazonPay\Model\Order;
+use OxidEsales\Eshop\Application\Model\Order;
+use OxidSolutionCatalysts\AmazonPay\Model\Order as AmazonOrder;
 use Psr\Log\LoggerInterface;
 use stdClass;
 
@@ -132,7 +133,7 @@ class AmazonService
             !is_null($checkoutSession['response']['buyer'])
         );
         if (!$sessionActive) {
-            self::unsetPaymentMethod();
+            $this->unsetPaymentMethod();
         }
         return $sessionActive;
     }
@@ -162,7 +163,7 @@ class AmazonService
      */
     public function getCheckoutSession(): array
     {
-        if ($this->checkoutSession != null) {
+        if (count($this->checkoutSession)) {
             return $this->checkoutSession;
         }
 
@@ -200,7 +201,7 @@ class AmazonService
     {
         if (is_null($this->deliveryAddress)) {
             $this->deliveryAddress = new stdClass();
-            $oOrder = oxNew(\OxidEsales\Eshop\Application\Model\Order::class);
+            $oOrder = oxNew(Order::class);
             $deliveryAddress = $oOrder->getDelAddressInfo();
 
             if ($deliveryAddress) {
@@ -252,7 +253,7 @@ class AmazonService
      */
     public function getMaximalRefundAmount(string $orderId): float
     {
-        $order = new Order();
+        $order = oxNew(Order::class);
         $order->load($orderId);
 
         $orderAmount = (float)$order->getTotalOrderSum();
@@ -316,7 +317,7 @@ class AmazonService
         Registry::getSession()->deleteVariable(Constants::SESSION_CHECKOUT_ID);
         $request = PhpHelper::jsonToArray($result['request']);
 
-        /** @var Order $order */
+        /** @var AmazonOrder $order */
         $order = oxNew(Order::class);
         if ($order->load(Registry::getSession()->getVariable('sess_challenge'))) {
             if ($result['status'] === 200) {
@@ -328,7 +329,9 @@ class AmazonService
                 $order->updateAmazonPayOrderStatus($status, $data);
                 Registry::getUtils()->redirect(Registry::getConfig()->getShopHomeUrl() . 'cl=thankyou', false);
                 return;
-            } elseif ($result['status'] === 202) {
+            }
+
+            if ($result['status'] === 202) {
                 $data = [
                     "chargeAmount" => $request['chargeAmount']['amount'],
                     "chargeId" => $response['chargeId']
@@ -364,13 +367,13 @@ class AmazonService
     {
         /** @var string $orderOxId */
         $orderOxId = Registry::getSession()->getVariable('sess_challenge');
-        $oOrder = oxNew(\OxidEsales\Eshop\Application\Model\Order::class);
+        $oOrder = oxNew(Order::class);
         if ($oOrder->load($orderOxId) && !empty($chargePermissionId)) {
             $activeShop = Registry::getConfig()->getActiveShop();
             /** @var string $oxCompany */
-            $oxCompany = $activeShop->getFieldData('oxcompany');
+            $oxCompany = $activeShop ? $activeShop->getFieldData('oxcompany') : '';
             /** @var string $oxOrderSubject */
-            $oxOrderSubject = $activeShop->getFieldData('oxordersubject');
+            $oxOrderSubject = $activeShop ? $activeShop->getFieldData('oxordersubject') : '';
             /** @var string $oxOrderNr */
             $oxOrderNr = $oOrder->getFieldData('oxordernr');
 
@@ -421,7 +424,7 @@ class AmazonService
     public function createRefund(string $orderId, float $refundAmount, LoggerInterface $logger)
     {
         $repository = oxNew(LogRepository::class);
-        $order = new Order();
+        $order = oxNew(Order::class);
         $order->load($orderId);
         /** @var string $orderCurrencyName */
         $orderCurrencyName = $order->getOrderCurrency()->name;
@@ -464,7 +467,7 @@ class AmazonService
         }
 
         if ($result['status'] !== 201) {
-            return;
+            return null;
         }
 
         $refundedAmount = $response['refundAmount']['amount'];
@@ -570,7 +573,7 @@ class AmazonService
         $chargeId = $response['chargeId'];
         $orderId = $repository->findOrderIdByChargeId($chargeId);
 
-        if ($orderId == null) {
+        if ($orderId === null) {
             return;
         }
 
@@ -784,7 +787,7 @@ class AmazonService
         }
 
         /** @var string $oxowneremail */
-        $oxowneremail = $shop->getFieldData('oxowneremail');
+        $oxowneremail = $shop ? $shop->getFieldData('oxowneremail') : '';
         /** @var string $subject */
         $subject = $lang->translateString("AMAZON_PAY_COMPLETECHECKOUTSESSION_ERROR_SUBJECT");
         /** @var string $errorMessage */
@@ -822,10 +825,10 @@ class AmazonService
         $activeShop = Registry::getConfig()->getActiveShop();
 
         /** @var string $oxcompany */
-        $oxcompany = $activeShop->getFieldData('oxcompany');
+        $oxcompany = $activeShop ? $activeShop->getFieldData('oxcompany'): '';
         $payload->setMerchantStoreName($oxcompany);
         /** @var string $oxordersubject */
-        $oxordersubject = $activeShop->getFieldData('oxordersubject');
+        $oxordersubject = $activeShop ? $activeShop->getFieldData('oxordersubject') : '';
         $payload->setNoteToBuyer($oxordersubject);
         $payload->setCurrencyCode($currencyCode);
 
@@ -840,7 +843,7 @@ class AmazonService
 
         $response = PhpHelper::jsonToArray($result['response']);
 
-        if (isset($response['reasonCode']) && !empty($response['reasonCode'])) {
+        if (!empty($response['reasonCode'])) {
             $logger->info(
                 'Capture Error',
                 $result
