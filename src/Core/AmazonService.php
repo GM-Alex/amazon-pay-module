@@ -825,7 +825,7 @@ class AmazonService
         $activeShop = Registry::getConfig()->getActiveShop();
 
         /** @var string $oxcompany */
-        $oxcompany = $activeShop ? $activeShop->getFieldData('oxcompany'): '';
+        $oxcompany = $activeShop ? $activeShop->getFieldData('oxcompany') : '';
         $payload->setMerchantStoreName($oxcompany);
         /** @var string $oxordersubject */
         $oxordersubject = $activeShop ? $activeShop->getFieldData('oxordersubject') : '';
