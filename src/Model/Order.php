@@ -200,7 +200,6 @@ class Order extends Order_parent
                 $this->_setFieldData('osc_amazon_remark', $remark);
                 $this->save();
                 break;
-
         }
     }
 

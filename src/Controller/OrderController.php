@@ -164,7 +164,6 @@ class OrderController extends OrderController_parent
                             $logger
                         );
                     }
-
                 }
             }
         }
