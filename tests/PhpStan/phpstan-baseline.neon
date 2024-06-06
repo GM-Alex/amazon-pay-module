@@ -31,6 +31,11 @@ parameters:
 			path: ../../src/Core/AmazonService.php
 
 		-
+		    message: "#^Ternary operator condition is always true.$#"
+		    count: 5
+		    path: ../../src/Core/AmazonService.php
+
+		-
 			message: "#^Property OxidSolutionCatalysts\\\\AmazonPay\\\\Controller\\\\Admin\\\\OrderOverview\\:\\:\\$captureStatus \\(string\\) does not accept array\\|string\\.$#"
 			count: 1
 			path: ../../src/Controller/Admin/OrderOverview.php

@@ -599,10 +599,12 @@ class AmazonService
         $chargeId = $response['chargeId'];
         $orderId = $repository->findOrderIdByChargeId($chargeId);
 
+        // @phpstan-ignore-next-line
         if ($orderId === null) {
             return;
         }
 
+        /** @var \OxidSolutionCatalysts\AmazonPay\Model\Order $order */
         $order = oxNew(Order::class);
         if ($order->load($orderId)) {
             switch ($response['statusDetails']['state']) {
