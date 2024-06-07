@@ -190,6 +190,30 @@ abstract class BaseCest
 
     /**
      * @return void
+     * @throws \Exception
+     */
+    protected function _openAmazonPayPageByButtonNextCart()
+    {
+        $amazonpayDiv = "#AmazonPayButtonNextCart2";
+
+        $this->I->waitForElement($amazonpayDiv, 60);
+        $this->I->click($amazonpayDiv);
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    protected function _openAmazonPayPageByButtonProductMain()
+    {
+        $amazonpayDiv = "#AmazonPayButtonProductMain";
+
+        $this->I->waitForElement($amazonpayDiv, 60);
+        $this->I->click($amazonpayDiv);
+    }
+
+    /**
+     * @return void
      */
     protected function _loginAmazonPayment()
     {
