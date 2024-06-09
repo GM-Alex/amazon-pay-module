@@ -197,6 +197,7 @@ abstract class BaseCest
         $amazonpayDiv = "#AmazonPayButtonNextCart2";
 
         $this->I->waitForElement($amazonpayDiv, 60);
+        $this->I->wait(5);
         $this->I->click($amazonpayDiv);
     }
 
@@ -209,6 +210,20 @@ abstract class BaseCest
         $amazonpayDiv = "#AmazonPayButtonProductMain";
 
         $this->I->waitForElement($amazonpayDiv, 60);
+        $this->I->wait(5);
+        $this->I->click($amazonpayDiv);
+    }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    protected function _openAmazonPayPageByButtonCheckoutUser()
+    {
+        $amazonpayDiv = "#AmazonPayButtonCheckoutUser";
+
+        $this->I->waitForElement($amazonpayDiv, 60);
+        $this->I->wait(5);
         $this->I->click($amazonpayDiv);
     }
 

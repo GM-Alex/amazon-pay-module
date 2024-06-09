@@ -139,7 +139,7 @@ final class AmazonPayWithLoginCest extends BaseCest
         $this->_openAmazonPayPageByButtonProductMain();
         $this->_loginAmazonPayment();
         $this->_cancelPayment();
-        $this->_openAmazonPayPageByButtonNextCart();
+        $this->_openAmazonPayPageByButtonProductMain();
         $this->_submitPaymentMethod();
         $this->_submitOrder();
         $this->_checkSuccessfulPayment();

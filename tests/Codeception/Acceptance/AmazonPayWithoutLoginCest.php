@@ -83,7 +83,7 @@ final class AmazonPayWithoutLoginCest extends BaseCest
         $this->_initializeTest();
         $this->_addProductToBasket();
         $this->_openCheckout();
-        $this->_openAmazonPayPageByButtonNextCart();
+        $this->_openAmazonPayPageByButtonCheckoutUser();
         $this->_loginAmazonPayment();
         $this->_checkAccountExist();
         $this->_loginOxidWithAmazonCredentials();
@@ -98,6 +98,7 @@ final class AmazonPayWithoutLoginCest extends BaseCest
      * @return void
      * @throws \Exception
      * @group AmazonPayWithoutLoginPaymentTest
+     * @group 1
      */
     public function checkPaymentFromDetailWorks(AcceptanceTester $I)
     {
@@ -129,7 +130,7 @@ final class AmazonPayWithoutLoginCest extends BaseCest
         $this->_initializeTest();
         $this->_addProductToBasket();
         $this->_openBasketDisplay();
-        $this->_openAmazonPayPageByButtonProductMain();
+        $this->_openAmazonPayPageByButtonNextCart();
         $this->_loginAmazonPayment();
         $this->_cancelPayment();
         $this->_openAmazonPayPageByButtonNextCart();
@@ -155,7 +156,7 @@ final class AmazonPayWithoutLoginCest extends BaseCest
         $this->_initializeTest();
         $this->_addProductToBasket();
         $this->_openCheckout();
-        $this->_openAmazonPayPageByButtonNextCart();
+        $this->_openAmazonPayPageByButtonCheckoutUser();
         $this->_loginAmazonPayment();
         $this->_checkAccountExist();
         $this->_loginOxidWithAmazonCredentials();
@@ -180,12 +181,12 @@ final class AmazonPayWithoutLoginCest extends BaseCest
         $this->_openAmazonPayPageByButtonProductMain();
         $this->_loginAmazonPayment();
         $this->_cancelPayment();
-        $this->_openAmazonPayPageByButtonNextCart();
+        $this->_openAmazonPayPageByButtonProductMain();
         $this->_submitPaymentMethod();
         $this->_checkAccountExist();
         $this->_loginOxidWithAmazonCredentials();
         $this->_changePaymentMethod();
-        $this->_openAmazonPayPageByButtonProductMain();
+        $this->_openAmazonPayPageByButtonNextCart();
         $this->_submitPaymentMethod();
         $this->_checkSuccessfulPayment();
     }
