@@ -160,9 +160,14 @@ abstract class BaseCest
      */
     protected function _openCheckout()
     {
-        $this->homePage->openMiniBasket();
-        $this->I->wait(3);
-        $this->homePage->openCheckout();
+        $miniBasketMenuElement = '//div[@class="btn-group minibasket-menu"]';
+
+        $this->I->waitForElementClickable($miniBasketMenuElement, 15);
+        $this->I->click($miniBasketMenuElement);
+
+        $this->I->waitForText(Translator::translate('CHECKOUT'));
+        $this->I->click(Translator::translate('CHECKOUT'));
+        $this->I->waitForPageLoad();
     }
 
     /**
@@ -170,9 +175,14 @@ abstract class BaseCest
      */
     protected function _openBasketDisplay()
     {
-        $this->homePage->openMiniBasket();
-        $this->I->wait(3);
-        $this->homePage->openBasketDisplay();
+        $miniBasketMenuElement = '//div[@class="btn-group minibasket-menu"]';
+
+        $this->I->waitForElementClickable($miniBasketMenuElement, 15);
+        $this->I->click($miniBasketMenuElement);
+
+        $this->I->waitForText(Translator::translate('DISPLAY_BASKET'));
+        $this->I->click(Translator::translate('DISPLAY_BASKET'));
+        $this->I->waitForPageLoad();
     }
 
     protected function _openAccountMenu()
