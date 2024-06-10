@@ -336,7 +336,7 @@ abstract class BaseCest
         $this->I->fillField($userAccountLoginName, $_ENV['OXID_ADMIN_USERNAME']);
         $this->I->fillField($userAccountLoginPassword, $_ENV['OXID_ADMIN_PASSWORD']);
         $this->I->click($userAccountLoginButton);
-        $this->I->wait(5);
+        $this->I->wait(15);
 
         $this->I->switchToFrame(null);
         $this->I->switchToFrame("basefrm");
@@ -346,7 +346,7 @@ abstract class BaseCest
     protected function _openOrder(string $orderNumber)
     {
         $this->_loginAdmin();
-        $this->I->wait(5);
+        $this->I->wait(15);
         $this->I->switchToFrame(null);
         $this->I->switchToFrame("navigation");
         $this->I->switchToFrame("adminnav");
