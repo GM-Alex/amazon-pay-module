@@ -98,7 +98,6 @@ final class AmazonPayWithoutLoginCest extends BaseCest
      * @return void
      * @throws \Exception
      * @group AmazonPayWithoutLoginPaymentTest
-     * @group 1
      */
     public function checkPaymentFromDetailWorks(AcceptanceTester $I)
     {
