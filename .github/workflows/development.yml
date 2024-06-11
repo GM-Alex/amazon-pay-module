@@ -307,7 +307,7 @@ jobs:
         with:
           name: CodeceptionTestsLog-${{ inputs.php }}-${{ inputs.oxid }}-${{ matrix.group }}
           path: |
-            source/test-module/${{ env.PACKAGE_NAME }}/Tests/Codeception/_output/
+            source/test-module/tests/Codeception/_output/
             source/source/log/oxideshop.log
             source/source/log/unzer/
             source/data/php/logs/error_log.txt
