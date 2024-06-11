@@ -18,6 +18,7 @@ final class AmazonPayWithLoginCest extends BaseCest
      * @return void
      * @throws \Exception
      * @group AmazonPayWithLoginPaymentTest
+     * @group 1
      */
     public function checkPaymentFromBasketWorks(AcceptanceTester $I)
     {

@@ -403,6 +403,7 @@ abstract class BaseCest
         $arr = explode('\\', $class);
         $className = array_pop($arr);
         $filename = sprintf('%s_%s_%s', $this->timestampForScreenshot, $className, $suffix);
+        echo $filename;
         $this->I->makeScreenshot($filename);
     }
 
