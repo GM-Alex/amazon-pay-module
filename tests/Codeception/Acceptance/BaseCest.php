@@ -162,8 +162,10 @@ abstract class BaseCest
     {
         $miniBasketMenuElement = '//div[@class="btn-group minibasket-menu"]';
 
+        $this->_makeScreenshot('beforeOpenMiniBasket');
         $this->I->waitForElementClickable($miniBasketMenuElement, 15);
         $this->I->click($miniBasketMenuElement);
+        $this->_makeScreenshot('afterOpenMiniBasket');
 
         $this->I->waitForText(Translator::translate('CHECKOUT'));
         $this->I->click(Translator::translate('CHECKOUT'));
@@ -177,8 +179,10 @@ abstract class BaseCest
     {
         $miniBasketMenuElement = '//div[@class="btn-group minibasket-menu"]';
 
+        $this->_makeScreenshot('beforeOpenMiniBasket');
         $this->I->waitForElementClickable($miniBasketMenuElement, 15);
         $this->I->click($miniBasketMenuElement);
+        $this->_makeScreenshot('afterOpenMiniBasket');
 
         $this->I->waitForText(Translator::translate('DISPLAY_BASKET'));
         $this->I->click(Translator::translate('DISPLAY_BASKET'));
