@@ -44,7 +44,7 @@ class Logger extends AbstractLogger
      * @throws DatabaseErrorException
      * @throws DatabaseConnectionException
      */
-    public function logMessage(string $message, array $context = [])
+    public function logMessage(?string $message, array $context = [])
     {
         $context = $this->resolveLogContent($context);
         $basket = Registry::getSession()->getBasket();
@@ -61,7 +61,7 @@ class Logger extends AbstractLogger
         $logMessage->setOrderId($context['orderId'] ?: $basket->getOrderId() ?: 'no basket');
         $logMessage->setShopId($context['shopId'] ?: Registry::getConfig()->getShopId());
         $logMessage->setRequestType($context['requestType'] ?? 'amazonpay');
-        $logMessage->setResponseMessage($message);
+        $logMessage->setResponseMessage((string)$message);
         $logMessage->setStatusCode($context['statusCode'] ?: '200');
         $logMessage->setIdentifier($context['identifier'] ?: $context['orderId'] ?: $userId);
         $logMessage->setChargeId($context['chargeId'] ?: 'null');
