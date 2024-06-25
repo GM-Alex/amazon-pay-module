@@ -372,6 +372,7 @@ abstract class BaseCest
 
         $orders = new Orders($this->I);
         $orders->find($orders->orderNumberInput, $orderNumber);
+        $this->I->wait(30);
 
         $this->I->switchToFrame(null);
         $this->I->switchToFrame("basefrm");
@@ -392,6 +393,7 @@ abstract class BaseCest
         $this->I->see(Translator::translate("OSC_AMAZONPAY_CONFIG"));
         $this->I->click(Translator::translate("OSC_AMAZONPAY_CONFIG"));
         $this->I->waitForDocumentReadyState();
+        $this->I->wait(30);
 
         $this->I->switchToFrame(null);
         $this->I->switchToFrame("basefrm");

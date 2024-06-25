@@ -183,7 +183,6 @@ class OrderOverview extends OrderOverview_parent
     public function refundpayment()
     {
         $oOrder = oxNew(Order::class);
-        /** @var float $refundAmount */
         $refundAmount = Registry::getRequest()->getRequestParameter("refundAmount");
         $refundAmount = str_replace(',', '.', $refundAmount);
 
@@ -198,7 +197,7 @@ class OrderOverview extends OrderOverview_parent
             $logger = new Logger();
             $errorMessage = OxidServiceProvider::getAmazonService()->createRefund(
                 $oOrder->getId(),
-                $refundAmount,
+                (float)$refundAmount,
                 $logger
             );
 
