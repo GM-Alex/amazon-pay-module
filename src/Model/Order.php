@@ -186,6 +186,7 @@ class Order extends Order_parent
                     );
                 }
                 $this->_setFieldData('oxfolder', 'ORDERFOLDER_NEW');
+                $this->_setFieldData('oxtransstatus', 'OK');
                 $this->save();
                 break;
 
