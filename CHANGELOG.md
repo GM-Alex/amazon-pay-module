@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - [0007654](https://bugs.oxid-esales.com/view.php?id=7654): Fix Capture type is incorrectly evaluated
 - [0007636](https://bugs.oxid-esales.com/view.php?id=7636): Fix Refund value can only be entered with a point, semicolon is not possible
 - [0007670](https://bugs.oxid-esales.com/view.php?id=7670): Fix Whitepage when writing log (in some cases)
+- [0007702](https://bugs.oxid-esales.com/view.php?id=7702): Fix: When config two-Step capture is done, oxorder->oxtransstatus is now set to OK
 
 ## [2.1.5] - 2024-01-26
 
