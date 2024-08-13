@@ -40,8 +40,3 @@ parameters:
 			count: 1
 			path: ../../src/Controller/Admin/OrderOverview.php
 
-		-
-		    message: "#^PHPDoc tag @throws with type Psr\\\\Container\\\\ContainerExceptionInterface is not subtype of Throwable$#"
-		    count: 1
-		    path: ../../src/Controller/Admin/ConfigController.php
-
