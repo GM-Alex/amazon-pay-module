@@ -33,7 +33,7 @@ class LoggerTest extends UnitTestCase
     /** @var Logger */
     private $logger;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $mockLogFileName = 'amazonpay-test.log';
         $this->logger = new Logger(

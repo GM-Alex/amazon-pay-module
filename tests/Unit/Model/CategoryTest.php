@@ -33,7 +33,7 @@ class CategoryTest extends UnitTestCase
     /** @var EshopCategoryModel */
     private $category;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->category = oxNew(EshopCategoryModel::class);

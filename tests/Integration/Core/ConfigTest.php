@@ -68,7 +68,7 @@ class ConfigTest extends UnitTestCase
     public function testGetIPNUrl()
     {
         $config = new Config();
-        $this->assertContains('cl=amazondispatch&action=ipn', $config->getIPNUrl());
+        $this->assertStringContainsString('cl=amazondispatch&action=ipn', $config->getIPNUrl());
     }
 
     public function testDisplayExpressInPDP()
@@ -108,7 +108,7 @@ class ConfigTest extends UnitTestCase
         $this->setConfigParam('sAmazonPayMerchantId', 'set');
         $this->setConfigParam('sAmazonPayStoreId', 'set');
         $config = new Config();
-        $this->setExpectedException(StandardException::class);
+        $this->expectException(StandardException::class);
         $config->checkHealth();
         $this->assertLoggedException(StandardException::class, 'OSC_AMAZONPAY_ERR_CONF_INVALID');
     }
@@ -123,7 +123,7 @@ class ConfigTest extends UnitTestCase
         $this->setConfigParam('sAmazonPayMerchantId', 'set');
         $this->setConfigParam('sAmazonPayStoreId', 'set');
         $config = new Config();
-        $this->setExpectedException(StandardException::class);
+        $this->expectException(StandardException::class);
         $config->checkHealth();
         $this->assertLoggedException(StandardException::class, 'OSC_AMAZONPAY_ERR_CONF_INVALID');
     }
@@ -138,7 +138,7 @@ class ConfigTest extends UnitTestCase
         $this->setConfigParam('sAmazonPayMerchantId', '');
         $this->setConfigParam('sAmazonPayStoreId', 'set');
         $config = new Config();
-        $this->setExpectedException(StandardException::class);
+        $this->expectException(StandardException::class);
         $config->checkHealth();
         $this->assertLoggedException(StandardException::class, 'OSC_AMAZONPAY_ERR_CONF_INVALID');
     }
@@ -153,7 +153,7 @@ class ConfigTest extends UnitTestCase
         $this->setConfigParam('sAmazonPayMerchantId', 'set');
         $this->setConfigParam('sAmazonPayStoreId', '');
         $config = new Config();
-        $this->setExpectedException(StandardException::class);
+        $this->expectException(StandardException::class);
         $config->checkHealth();
         $this->assertLoggedException(StandardException::class, 'OSC_AMAZONPAY_ERR_CONF_INVALID');
     }

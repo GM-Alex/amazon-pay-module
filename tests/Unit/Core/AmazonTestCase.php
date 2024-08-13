@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace OxidSolutionCatalysts\AmazonPay\Tests\Unit\Core;
 
-use Dotenv\Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 use Exception;
 use Mockery;
 use Mockery\MockInterface;
@@ -37,7 +37,7 @@ class AmazonTestCase extends UnitTestCase
     /**
      * @throws Exception
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -49,8 +49,8 @@ class AmazonTestCase extends UnitTestCase
              * On a second run of this method, $_ENV won't have the .env-files content.
              * That's why we store the data from the first run in a static attribute.
              */
-            $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-            $dotenv->load();
+            $dotenv = new Dotenv();
+            $dotenv->load(__DIR__ . '/../../.env');
             self::$modulConfig = [
                 'sAmazonPayStoreId' => $_ENV['MODULE_AMAZON_PAY_STORE_ID'],
                 'sAmazonPayMerchantId' => $_ENV['MODULE_AMAZON_PAY_MERCHANT_ID'],
