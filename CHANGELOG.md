@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.1.6] - 2024-??-??
+## [2.1.6] - 2024-08-15
 
 - [0007654](https://bugs.oxid-esales.com/view.php?id=7654): Fix Capture type is incorrectly evaluated
 - [0007636](https://bugs.oxid-esales.com/view.php?id=7636): Fix Refund value can only be entered with a point, semicolon is not possible
