@@ -188,7 +188,7 @@ class Order extends Order_parent
                 if (!empty($data['chargeAmount'])) {
                     $this->_setFieldData(
                         'osc_amazon_remark',
-                        '<span style="color=red">AmazonPay Authorized (not Captured):</span>' . $data['chargeAmount']
+                        'AmazonPay Authorized (not Captured): ' . $data['chargeAmount']
                     );
                 }
                 $this->_setFieldData('oxfolder', 'ORDERFOLDER_NEW');
