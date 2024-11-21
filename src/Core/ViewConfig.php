@@ -13,6 +13,7 @@ use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Theme;
+use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
 use OxidSolutionCatalysts\AmazonPay\Core\Helper\PhpHelper;
 use OxidSolutionCatalysts\AmazonPay\Core\Provider\OxidServiceProvider;
 use OxidSolutionCatalysts\AmazonPay\Model\User;
@@ -366,7 +367,14 @@ class ViewConfig extends ViewConfig_parent
      */
     public function getSignature(string $payload): string
     {
-        $amazonClient = OxidServiceProvider::getAmazonClient();
-        return $amazonClient->generateButtonSignature($payload);
+        try {
+            $amazonClient = OxidServiceProvider::getAmazonClient();
+            return $amazonClient->generateButtonSignature($payload);
+        } catch (Exception $exception) {
+            /** @var Logger $logger */
+            $logger = ContainerFactory::getInstance()->getContainer()->get(Logger::class);
+            $logger->log('error', $exception->getMessage(), [$exception]);
+            return '';
+        }
     }
 }
